@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="ticket">
+	<div id="header">
+		<div id="ticket_id">#{{ticket.key.id}}</div>
+		<h1>{{ ticket.summary }}</h1>
+		<div id="reported">reported by <a href="/u/@{{ ticket.author_email }}">{{ ticket.author_email }}</a>,
+		{{ticket.created|date:"b wS"}}</div>
+		<div id="status"><b>status:</b> <strong style="background:yellow;padding:4px">{{ticket.status}}</strong>
+			{# this is a terrible hack for getting around django's lack of ability to use dictionaries #}
+			{% for label in labels reversed %}
+				<b>{{ label }}:</b><strong style="background:#e3e3e3;padding:4px">{{ label_value.pop }}</strong>
+			{% endfor %}
+		</div>
+	</div>
+	<div id="ticket_description">
+		{{ ticket.description }}
+	</div>
+</div>
+
+
+{% for comment in comments %}
+
+	<div class="comment" id="comment{{forloop.counter}}">
+		<div class="comment_header">Comment <a href="#comment{{ forloop.counter }}">{{ forloop.counter }}</a>
+		made by <a href="/u/@{{comment.author_email}}">{{ comment.author_email }}</a>,
+		{{comment.created|date:"b wS"}}</div>
+		<div class="comment_body">{{ comment.description|default:"<i>There was no comment entered for this changeset.</i>" }}</div>
+	</div>
+
+{% endfor %}
+
+
+<h3>enter a new comment</h3>
+
+<form action="/ticket/{{ ticket.key.id }}/changeset" method=post>
+	<input type="hidden" name="ticket_key" value="{{ ticket.key }}" id="ticket_key">
+	<table>
+		<tr>
+			<td>email</td>
+			<td><input size="36" type="text" name="comment_email" value="{{user.email}}" id="comment_email"></td>
+		</tr>
+		<tr>
+			<td valign="top">your {% if admin %}changeset{% else %}comment{% endif %}</td>
+			<td>
+				<textarea name="new_comment" rows="8" cols="65"></textarea>
+				{% if admin %}
+				<table>
+					<tr>
+						<td>summary</td>
+						<td><input type="text" name="change_summary" size="56" value="{{ticket.summary}}" id="change_summary"></td>
+					</tr>
+					<tr>
+						<td valign=top>labels</td>
+						<td><textarea name="change_labels" rows="4" cols="40">
+{% for label in ticket.labels %}
+{% ifequal forloop.counter 1 %}
+{{label}}
+{% else %}
+,{{label}}
+{% endifequal %}
+{% endfor %}
+						</textarea></td>
+					</tr>
+				</table>
+				{% endif %}
+			</td>
+		</tr>
+			<td>&nbsp;</td>
+			<td><input type="submit" name="submit" value="submit" id="submit" /></td>
+		</tr>
+	</table>
+</form>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+a { color: blue; text-decoration: none; }
+
+body { font-family: helvetica, arial; font-size: 12px; line-height: 175%; }
+
+strong {
+	border-radius: 6px;
+	-moz-border-radius-: 6px;
+	-webkit-border-radius: 6px;
+}
+
+#navigation {
+	background: #4376D2;
+	border-radius: 4px;
+	-moz-border-radius-: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#navigation ul { padding: 6px;}
+
+#navigation li {
+	display: inline;
+	margin: 1px;
+}
+
+#navigation li a {
+	color: #fff;
+	font-weight: bold;
+	size: 13px;
+	padding: 4px;
+}
+
+table tr td {
+	border-bottom: 1px solid #e3e3e3;
+	padding: 4px;
+}
+
+#table_head {
+	border: 0;
+	background: #e3e3e3;
+	padding: 4px;
+	font-weight: bold;
+}
+
+.col_desc {
+	color: #999;
+	font-size: 75%;
+}
+
+#ticket {
+	width: 80%;
+	border: 2px solid #BAD5FC;
+}
+
+
+#ticket_id {
+	float:left;
+	font-size: 42px;
+	text-align: center;
+	padding: 20px;
+	margin: 10px;
+	margin-top: 0;
+	background: #eee;
+	border-radius: 4px;
+	-moz-border-radius-: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#ticket h1 {
+	margin: 0;
+}
+
+#ticket_description {
+	padding: 8px;
+	font-family:monospace;
+}
+
+#ticket #header {
+	padding: 12px;
+	padding-bottom: 18px;
+	background: #BAD5FC;
+}
+
+.comment {
+	width: 65%;
+	border: 2px solid #e3e3e3;
+	margin: 10px;
+}
+
+.comment_header {
+	background: #e3e3e3;
+	padding: 4px;
+	font-weight: bold;
+}
+
+.comment_body {
+	padding: 6px;
+	font-family:monospace;
+}
+
+
+#footer {
+	margin-top: 40px;
+}

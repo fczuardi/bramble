@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="/j/jquery.validate.js"></script>
+
+<script>
+	$(document).ready(function(){
+		$("#comment_form").validate();
+	});
+</script>
+
+<h1>Create a New Ticket</h1>
+
+<form method=post id="comment_form">
+	
+	<table>	
+		
+		<tr>
+			<td><label for="email">Your Email</label></td>
+			<td><input type="text" name="email" size="32"  id="email" class="required email" />
+					<span id="invalid_email" style="display:none;color:red">please enter a valid email address</span>
+				</td>
+		</tr>
+			
+		<tr>
+			<td><label for="summary">Summary</label></td>
+			<td><input type="text" name="summary" value="{{summary|default:"Enter a quick one line summary"}}" size="32" /></td>
+		</tr>
+		
+		<tr>
+			<td valign="top"><label for="description">Description</label></td>
+			<td><textarea style="font-size:12px;" name="description" cols="50" rows="12">{{description}}</textarea></td>
+		</tr>
+		
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="submit" value="Create" /></td>
+		</tr>
+		
+		
+	</table>
+    
+    
+</form>
+
+{% endblock %}

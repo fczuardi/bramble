@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>bramble</title>
+	
+	<link rel="stylesheet" href="/s/default.css" type="text/css" media="screen">
+	
+	<script src="http://www.google.com/jsapi"></script>
+	
+	<script>
+	  // Load jQuery
+	  google.load("jquery", "1");
+	</script>
+	
+</head>
+<body>
+    
+    
+    <div id="container">
+        
+        <div id="navigation">
+			<ul>
+				<li><a href="/">dashboard</a></li>
+				<li><a href="/ticket/create">ticket</a></li>
+				<li><a href="/control/">control</a></li>
+				<li><a href="/hours/">hours</a></li>
+				<li style="float:right"><a href="{{login_url}}">login</a></li>
+			</ul>
+        </div>
+        
+        
+        {% block content %}{% endblock %}
+        <!--
+
+        <div id="footer">
+            copyright 2008 (<a href="http://creativecommons.org/licenses/LGPL/2.1/">cc</a>) <a href="http://revision1.net">drew newberry</a>.
+            <span style="float:right"><a href="#">about</a> <a href="{{login_url}}">login</a></span>
+        </div> -->
+        
+    </div>
+    
+</body>
+</html>

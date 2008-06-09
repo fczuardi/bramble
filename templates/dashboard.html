@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Ticket Dashboard</h1>
+
+
+<table cellspacing=0>
+
+<tr>
+	<td id="table_head" colspan=4>
+		Recent or Open Tickets
+	</td>
+</tr>
+
+
+{% for ticket in tickets %}
+
+	<tr>
+		<!--<td><a href="/ticket/{{ticket.key.id}}">#{{ticket.key.id}}</a></td>-->
+		<td><strong style="background:yellow;padding:3px">{{ticket.status}}</strong></td>
+		<td><a href="/ticket/{{ticket.key.id}}">{{ticket.summary}}</a></td>
+		<td style="padding-left:100px"><span class="col_desc">reported by</span> {{ticket.author_email}}</td>
+		<td style="border-left:1px solid #e3e3e3;">{{ticket.updated|date}}</td>
+	</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
