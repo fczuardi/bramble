@@ -3,10 +3,22 @@ a { color: blue; text-decoration: none; }
 
 body { font-family: helvetica, arial; font-size: 12px; line-height: 175%; }
 
+#content {
+	padding: 0 15px;
+}
+
 strong {
 	border-radius: 6px;
 	-moz-border-radius-: 6px;
 	-webkit-border-radius: 6px;
+}
+
+strong.ticket_type {
+	border-radius: 4px;
+	-moz-border-radius-: 4px;
+	-webkit-border-radius: 4px;
+	background: #e3e3e3;
+	padding: 8px;	
 }
 
 #navigation {

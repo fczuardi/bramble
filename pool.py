@@ -4,7 +4,7 @@
 
 __author__ = "Drew Newberry <drew@revision1.net>"
 
-import os, time, sys
+import os, time, sys, logging
 import wsgiref.handlers
 
 from google.appengine.ext import webapp
@@ -24,8 +24,16 @@ class Ticket(db.Model):
 	created = db.DateTimeProperty(auto_now_add=True)
 	updated = db.DateTimeProperty(auto_now=True)
 	author_email = db.EmailProperty()
-	labels = db.ListProperty(db.Category)
-	status = db.StringProperty(default="New")
+	status = db.StringProperty(default="new")
+	type = db.StringProperty(default="ticket")
+	
+	def get_labels(self):
+		"""returns a dictionary of all labels in the ticket"""
+		ld = {}
+		for label in self.labels:
+			tokens = label.split(":")
+			ld[tokens[0]] = tokens[1]
+		return ld
 
 class Comment(db.Model):
     author_email = db.EmailProperty(required=True)
@@ -58,8 +66,9 @@ class BaseRequestHandler(webapp.RequestHandler):
 
 class DefaultPage(BaseRequestHandler):
 	def get(self):
-	    tickets = Ticket.all()
-	    self.generate('dashboard.html', {'tickets':tickets})
+		tickets = Ticket.all()
+		test = {"one": "with some content", "two":"with some more"}
+		self.generate('dashboard.html', {'tickets':tickets, 'test':test})
 	    
 class CreateTicket(BaseRequestHandler):
 	def get(self):
