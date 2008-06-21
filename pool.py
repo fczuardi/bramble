@@ -71,6 +71,7 @@ class BaseRequestHandler(webapp.RequestHandler):
 class DefaultPage(BaseRequestHandler):
 	def get(self):
 		tickets = Ticket.all()
+		tickets.order('-created')
 		test = {"one": "with some content", "two":"with some more"}
 		self.generate('dashboard.html', {'tickets':tickets, 'test':test})
 	    
