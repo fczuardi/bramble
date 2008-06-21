@@ -41,6 +41,10 @@ class Comment(db.Model):
     created = db.DateTimeProperty(auto_now_add=True)
     ticket = db.ReferenceProperty(Ticket)
 
+class SystemPair(db.Model):
+	lookup = db.StringProperty()
+	data = db.TextProperty()
+
 
 class BaseRequestHandler(webapp.RequestHandler):
     """Supplies a common template generation function.
@@ -112,13 +116,18 @@ class TicketChangeSet(BaseRequestHandler):
 		t.put()
 
 		self.redirect('/ticket/' + ticket_id)
+		
+class ControlDashboard(BaseRequestHandler):
+	def get(self):
+		self.generate('control.html')
 
 def main():
   application = webapp.WSGIApplication([
 		('/', DefaultPage),
 		('/ticket/create', CreateTicket),
 		('/ticket/(\d+)/changeset', TicketChangeSet),
-		('/ticket/(\d+)', ViewTicket)
+		('/ticket/(\d+)', ViewTicket),
+		('/control/', ControlDashboard)
 	], debug=_DEBUG)
   wsgiref.handlers.CGIHandler().run(application)
 

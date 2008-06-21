@@ -22,13 +22,16 @@ strong.ticket_type {
 }
 
 #navigation {
-	background: #4376D2;
+	/*background: #4376D2;
 	border-radius: 4px;
 	-moz-border-radius-: 4px;
-	-webkit-border-radius: 4px;
+	-webkit-border-radius: 4px;*/
 }
 
-#navigation ul { padding: 6px;}
+#navigation ul { 
+	padding: 6px;
+	border-bottom: 1px solid #e3e3e3;
+}
 
 #navigation li {
 	display: inline;
@@ -36,15 +39,19 @@ strong.ticket_type {
 }
 
 #navigation li a {
-	color: #fff;
+	color: #000;
 	font-weight: bold;
 	size: 13px;
 	padding: 4px;
 }
 
 table tr td {
-	border-bottom: 1px solid #e3e3e3;
+/*	border-bottom: 1px solid #e3e3e3;*/
 	padding: 4px;
+}
+
+td label {
+	font-weight: bold;
 }
 
 #table_head {

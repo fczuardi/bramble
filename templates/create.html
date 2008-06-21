@@ -14,23 +14,27 @@
 
 <form method=post id="comment_form">
 	
-	<table>	
+	<table>
 		
-		<tr>
-			<td><label for="email">Your Email</label></td>
-			<td><input type="text" name="email" size="32"  id="email" class="required email" />
-					<span id="invalid_email" style="display:none;color:red">please enter a valid email address</span>
-				</td>
-		</tr>
+		<style type="text/css" media="screen">
+
+		</style>
 			
 		<tr>
 			<td><label for="summary">Summary</label></td>
-			<td><input type="text" name="summary" value="{{summary|default:"Enter a quick one line summary"}}" size="32" /></td>
+			<td><input type="text" name="summary" value="Enter a quick one line summary" size="57" /></td>
 		</tr>
 		
 		<tr>
 			<td valign="top"><label for="description">Description</label></td>
-			<td><textarea style="font-size:12px;" name="description" cols="50" rows="12">{{description}}</textarea></td>
+			<td><textarea name="description" cols="50" rows="12"></textarea></td>
+		</tr>
+		
+		<tr>
+			<td><label for="email">Your Email</label></td>
+			<td><input type="text" name="email" size="32"  id="email" class="required email" />
+					<span id="invalid_email" style="background:#FF6;border:1px solid #FF0;color:black;padding:4px;font-weight:bold">please enter a valid email address</span>
+				</td>
 		</tr>
 		
 		<tr>

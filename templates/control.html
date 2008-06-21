@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="content">
+	<h1>Control</h1>
+	
+	<h3>Status</h3>
+	<form action="/lookup/statuses" action=post>
+		<textarea name="data" rows="8" cols="40"></textarea><br />
+		<input type="submit" name="update" value="update" id="update">
+	</form>
+	
+	<h3>Type</h3>
+	<form action="/lookup/type" action=post>
+		<textarea name="data" rows="8" cols="40"></textarea><br />
+		<input type="submit" name="update" value="update" id="update">
+	</form>
+	
+	
+	<h3>Priority</h3>
+	<form action="/lookup/priority" method=post>
+		<textarea name="data" rows="8" cols="40"></textarea><br />
+		<input type="submit" name="update" value="update" id="update">
+	</form>
+	
+	
+</div>
+
+{% endblock %}
