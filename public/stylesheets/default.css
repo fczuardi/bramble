@@ -13,6 +13,10 @@ body { margin:0;background:#e3e3e3;font-family: helvetica, arial; font-size: 12p
 	padding-bottom: 10px;
 }
 
+#ticket_content {
+	background: #fff;
+}
+
 strong {
 	border-radius: 6px;
 	-moz-border-radius-: 6px;
@@ -75,8 +79,7 @@ td label {
 }
 
 #ticket {
-	width: 80%;
-	border: 2px solid #BAD5FC;
+	/*border: 2px solid #BAD5FC;*/
 }
 
 
@@ -98,7 +101,7 @@ td label {
 }
 
 #ticket_description {
-	padding: 8px;
+	padding: 16px;
 	font-family:monospace;
 }
 
@@ -108,10 +111,18 @@ td label {
 	background: #BAD5FC;
 }
 
+#ticket_content h2 {
+	padding-left: 16px;
+}
+
 .comment {
 	width: 65%;
 	border: 2px solid #e3e3e3;
-	margin: 10px;
+	margin: 32px;
+}
+
+.comment_form {
+	padding: 0 32px;
 }
 
 .comment_header {
