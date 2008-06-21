@@ -12,8 +12,9 @@ from google.appengine.ext.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
 
-
 from google.appengine.api import urlfetch
+
+from django.utils import simplejson
 
 _DEBUG = True
 
@@ -47,26 +48,32 @@ class SystemPair(db.Model):
 
 
 class BaseRequestHandler(webapp.RequestHandler):
-    """Supplies a common template generation function.
+	"""Supplies a common template generation function.
 
-    When you call generate(), we augment the template variables supplied with
-    the current user in the 'user' variable and the current webapp request
-    in the 'request' variable.
-    """
-    def generate(self, template_name, template_values={}):
-        values = {
-            'request': self.request,
-            'user': users.GetCurrentUser(),
+	When you call generate(), we augment the template variables supplied with
+	the current user in the 'user' variable and the current webapp request
+	in the 'request' variable.
+	"""
+	def get_commits(self):
+		commits = urlfetch.fetch("http://github.com/api/v1/json/drew/bramble/commits/master")
+		commits_dict = simplejson.loads(str(commits.content))
+		return commits_dict
+
+	def generate(self, template_name, template_values={}):
+		values = {
+			'request': self.request,
+			'user': users.GetCurrentUser(),
 			'admin': users.is_current_user_admin(),
-            'login_url': users.CreateLoginURL(self.request.uri),
-            'logout_url': users.CreateLogoutURL('http://' + self.request.host + '/'),
-            'debug': self.request.get('deb'),
-            'application_name': 'my pool'
-        }
-        values.update(template_values)
-        directory = os.path.dirname(__file__)
-        path = os.path.join(directory, os.path.join('templates', template_name))
-        self.response.out.write(template.render(path, values, debug=_DEBUG))
+			'login_url': users.CreateLoginURL(self.request.uri),
+			'logout_url': users.CreateLogoutURL('http://' + self.request.host + '/'),
+			'debug': self.request.get('deb'),
+			'application_name': 'my pool',
+			'commits': self.get_commits()
+		}
+		values.update(template_values)
+		directory = os.path.dirname(__file__)
+		path = os.path.join(directory, os.path.join('templates', template_name))
+		self.response.out.write(template.render(path, values, debug=_DEBUG))
 
 class DefaultPage(BaseRequestHandler):
 	def get(self):

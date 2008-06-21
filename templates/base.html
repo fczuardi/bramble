@@ -37,6 +37,13 @@
         <div id="footer">
             some rights reserved. (<a href="http://creativecommons.org/licenses/LGPL/2.1/">cc</a>) <a href="http://revision1.net">drew newberry</a>.
             <span style="float:right"><a href="#">about</a> <a href="{{login_url}}">login</a></span>
+
+			<p><strong>recent bramble commits</strong></p>
+			<p>
+				{% for commit in commits.commits %}
+					<a href="{{commit.url}}">{{commit.message}}</a> commited at {{commit.authored_date}}<br/>
+				{% endfor %}
+			</p>
         </div>
         
     </div>
