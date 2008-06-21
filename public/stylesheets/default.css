@@ -1,10 +1,16 @@
 label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
 a { color: blue; text-decoration: none; }
 
-body { font-family: helvetica, arial; font-size: 12px; line-height: 175%; }
+body { margin:0;background:#e3e3e3;font-family: helvetica, arial; font-size: 12px; line-height: 175%; }
 
 #content {
-	padding: 0 15px;
+	padding: 25px;
+	background: #fff;
+}
+
+#content h1 {
+	margin:0;
+	padding-bottom: 10px;
 }
 
 strong {
@@ -22,13 +28,15 @@ strong.ticket_type {
 }
 
 #navigation {
-	/*background: #4376D2;
-	border-radius: 4px;
+	margin:0;
+	background: #fff;
+	/*border-radius: 4px;
 	-moz-border-radius-: 4px;
 	-webkit-border-radius: 4px;*/
 }
 
 #navigation ul { 
+	margin:0;
 	padding: 6px;
 	border-bottom: 1px solid #e3e3e3;
 }
@@ -119,5 +127,7 @@ td label {
 
 
 #footer {
-	margin-top: 40px;
+	background: #e3e3e3;
+	padding: 10px;
+	font-weight: bold;
 }
