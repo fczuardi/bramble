@@ -7,37 +7,22 @@
 <h1>Ticket Dashboard</h1>
 
 
-<table cellspacing=0>
-
-<tr>
-	<td id="table_head" colspan=4>
-		Recent or Open Tickets
-	</td>
-</tr>
+<table cellspacing=0 width="700px">
 
 
 {% for ticket in tickets %}
 
 	<tr>
-		<td><strong>{{ticket.created|date:"l"}}</strong><br/>{{ticket.created|date:"M j"}}</td>
+		<td style="text-align:right;padding-right:15px" valign="top"><strong>{{ticket.created|date:"l"}}</strong><br/>{{ticket.created|date:"M j"}}</td>
+		<td valign=top style="padding-top: 12px">
+			<strong class="ticket_type">{{ticket.type}}</strong>
+		</td>
 		<td>
 			<strong><a href="/ticket/{{ticket.key.id}}">"{{ticket.summary}}"</a></strong><br/>
 			reported by <a href="/u/{{ticket.author_email}}">{{ticket.author_email}}</a>
 			/ {{ticket.status}}
 		</td>
-		<td>
-			<strong class="ticket_type">{{ticket.type}}</strong>
-		</td>
 	</tr>
-
-	<!--
-	<tr>
-		<td><a href="/ticket/{{ticket.key.id}}">#{{ticket.key.id}}</a></td>
-		<td><strong style="background:yellow;padding:3px">{{ticket.status}}</strong></td>
-		<td><a href="/ticket/{{ticket.key.id}}">{{ticket.summary}}</a></td>
-		<td style="padding-left:100px"><span class="col_desc">reported by</span> {{ticket.author_email}}</td>
-		<td style="border-left:1px solid #e3e3e3;">{{ticket.updated|date}}</td>
-	</tr> -->
 
 {% endfor %}
 
