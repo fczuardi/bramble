@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<div id="content">
+
 <script type="text/javascript" src="/j/jquery.validate.js"></script>
 
 <script>
@@ -27,13 +29,13 @@
 		
 		<tr>
 			<td valign="top"><label for="description">Description</label></td>
-			<td><textarea name="description" cols="50" rows="12"></textarea></td>
+			<td><textarea name="description" cols="60" rows="16" style="font-family:courier;"></textarea></td>
 		</tr>
 		
 		<tr>
 			<td><label for="email">Your Email</label></td>
 			<td><input type="text" name="email" size="32"  id="email" class="required email" />
-					<span id="invalid_email" style="background:#FF6;border:1px solid #FF0;color:black;padding:4px;font-weight:bold">please enter a valid email address</span>
+					<span id="invalid_email"></span>
 				</td>
 		</tr>
 		
@@ -47,5 +49,7 @@
     
     
 </form>
+
+</div>
 
 {% endblock %}
