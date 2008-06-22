@@ -10,7 +10,7 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used 29 times in query history.
+# Used 81 times in query history.
 - kind: Comment
   properties:
   - name: ticket
@@ -27,4 +27,10 @@ indexes:
 - kind: Node
   properties:
   - name: date
+    direction: desc
+
+# Used 75 times in query history.
+- kind: Ticket
+  properties:
+  - name: created
     direction: desc
