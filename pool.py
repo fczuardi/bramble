@@ -127,7 +127,10 @@ class TicketChangeSet(BaseRequestHandler):
 		
 class ControlDashboard(BaseRequestHandler):
 	def get(self):
-		self.generate('control.html')
+		if not users.is_current_user_admin():
+			self.response.out.write('you\'re not and admin, you should probably head <a href="/">home...</a>')
+		else:
+			self.generate('control.html')
 
 def main():
   application = webapp.WSGIApplication([
