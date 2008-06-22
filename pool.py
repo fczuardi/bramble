@@ -122,11 +122,6 @@ class TicketChangeSet(BaseRequestHandler):
 			description=self.request.get('new_comment'),
 			ticket=db.Key(self.request.get('ticket_key')))
 		c.put()
-		t = Ticket.get(db.Key(self.request.get('ticket_key')))
-		labels = [db.Category('type:feature-request'), db.Category('priority:high'), db.Category('access:public')]
-		t.labels = labels
-		t.put()
-
 		self.redirect('/ticket/' + ticket_id)
 		
 class ControlDashboard(BaseRequestHandler):
