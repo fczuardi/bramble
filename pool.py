@@ -15,8 +15,12 @@ from google.appengine.api import users
 from google.appengine.api import urlfetch
 
 from django.utils import simplejson
+from django.conf import settings
+import markdown
 
 _DEBUG = True
+
+settings.INSTALLED_APPS = ('django.contrib.markup', 'pool')
 
 class Ticket(db.Model):
 	summary = db.StringProperty()
