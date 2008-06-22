@@ -2,6 +2,14 @@
 
 {% block content %}
 
+<script type="text/javascript" src="/j/jquery.validate.js"></script>
+
+<script>
+	$(document).ready(function(){
+		$("#comment_form").validate();
+	});
+</script>
+
 <div id="ticket_content">
 
 <div id="ticket">
@@ -42,12 +50,12 @@
 
 <h2>enter a new comment</h2>
 
-<form action="/ticket/{{ ticket.key.id }}/changeset" method=post class="comment_form">
+<form action="/ticket/{{ ticket.key.id }}/changeset" method=post id="comment_form" class="comment_form">
 	<input type="hidden" name="ticket_key" value="{{ ticket.key }}" id="ticket_key">
 	<table>
 		<tr>
 			<td align=right><strong>email</strong></td>
-			<td><input size="36" type="text" name="comment_email" value="{{user.email}}" id="comment_email"></td>
+			<td><input size="36" type="text" name="comment_email" value="{{user.email}}" id="comment_email" class="required email"></td>
 		</tr>
 		<tr>
 			<td valign="top" align=right><strong>your {% if admin %}changeset{% else %}comment{% endif %}</strong></td>
