@@ -3,6 +3,10 @@ a { color: blue; text-decoration: none; }
 
 body { margin:0;font-family: helvetica, arial; font-size: 12px; line-height: 175%; }
 
+h1 {
+	background: yellow;
+}
+
 #content {
 	padding: 25px;
 	background: #fff;
@@ -111,6 +115,8 @@ td label {
 	background: #BAD5FC;
 }
 
+
+
 #ticket_content h2 {
 	padding-left: 16px;
 }
@@ -144,4 +150,20 @@ td label {
 #footer {
 	background: #e3e3e3;
 	padding: 10px;
+}
+
+/*
+	new ticket stuff
+*/
+
+#ticket {
+	border: 2px solid #BAD5FC;
+}
+
+#ticket #header {
+	background: #BAD5FC;
+}
+
+#ticket h1 {
+	background: none;
 }

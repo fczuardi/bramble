@@ -11,6 +11,92 @@
 	});
 </script>
 
+<div id="content">
+	
+	<div id="ticket">	
+		<div id="header">
+			<table>
+				<tr>
+					<td valign=top><div id="ticket_id">#{{ticket.key.id}}</div></td>
+					<td>
+						<div id="ticket_profile">
+							<h1>{{ticket.summary}}</h1>
+							reported by <a href="/u/{{ticket.author_email}}">{{ticket.author_email}}</a>
+							on {{ticket.created|date}}<br/>
+							<strong>status</strong> {{ticket.status}},
+							<strong>type</strong> {{ticket.type}},
+							<strong>labels</strong>
+							{% for label in ticket.labels%}
+								{# some fencepost stuff #}
+								{% if forloop.last %}
+									and <a href="#" class="label">{{label}}</a>
+								{% else %}
+									<a href="#" class="label">{{label}}</a>,
+								{% endif %}
+							{% endfor %}
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="ticket_description">
+			{{ticket.description|markdown}}
+		</div>
+	</div>
+	
+	<div id="comments">
+		
+		{% for comment in comments %}
+
+			<div class="comment" id="c{{forloop.counter}}">
+				<div class="comment_header">Comment <a href="#c{{ forloop.counter }}">{{ forloop.counter }}</a>
+				made by <a href="/u/{{comment.author_email}}">{{ comment.author_email }}</a>,
+				{{comment.created|date:"b wS"}}</div>
+				<div class="comment_body">{{ comment.description|default:"<i>There was no comment entered for this changeset.</i>"|markdown }}</div>
+			</div>
+
+		{% endfor %}
+		
+	</div>
+	
+	<div id="new_comment">
+		<h2>add a new comment</h2>
+		<form action="/ticket/{{ ticket.key.id }}/changeset" method=post id="comment_form" class="comment_form">
+			<input type="hidden" name="ticket_key" value="{{ ticket.key }}" id="ticket_key">
+			<table>
+				<tr>
+					<td align=right><strong>email</strong></td>
+					<td><input size="36" type="text" name="comment_email" value="{{user.email}}" id="comment_email" class="required email"></td>
+				</tr>
+				<tr>
+					<td valign="top" align=right><strong>your {% if admin %}changeset{% else %}comment{% endif %}</strong></td>
+					<td>
+						<textarea name="new_comment" rows="8" cols="65"></textarea>
+						{% if admin %}
+						<table>
+							<tr>
+								<td align=right><strong>summary</strong></td>
+								<td><input type="text" name="change_summary" size="56" value="{{ticket.summary}}" id="change_summary"></td>
+							</tr>
+							<tr>
+								<td valign=top align=right><strong>labels</strong></td>
+								<td><textarea name="change_labels" rows="4" cols="40">
+								</textarea></td>
+							</tr>
+						</table>
+						{% endif %}
+					</td>
+				</tr>
+					<td>&nbsp;</td>
+					<td><input type="submit" name="submit" value="submit" id="submit" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+</div>
+
+<!--
 <div id="ticket_content">
 
 <div id="ticket">
@@ -85,4 +171,7 @@
 </form>
 
 </div>
+
+
+-->
 {% endblock %}
