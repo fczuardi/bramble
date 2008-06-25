@@ -58,10 +58,6 @@ class BaseRequestHandler(webapp.RequestHandler):
 	the current user in the 'user' variable and the current webapp request
 	in the 'request' variable.
 	"""
-	def get_commits(self):
-		commits = urlfetch.fetch("http://github.com/api/v1/json/drew/bramble/commits/master")
-		commits_dict = simplejson.loads(str(commits.content))
-		return commits_dict
 
 	def generate(self, template_name, template_values={}):
 		values = {
@@ -72,7 +68,6 @@ class BaseRequestHandler(webapp.RequestHandler):
 			'logout_url': users.CreateLogoutURL('http://' + self.request.host + '/'),
 			'debug': self.request.get('deb'),
 			'application_name': 'my pool',
-			'commits': self.get_commits()
 		}
 		values.update(template_values)
 		directory = os.path.dirname(__file__)
@@ -127,9 +122,18 @@ class TicketChangeSet(BaseRequestHandler):
 class ControlDashboard(BaseRequestHandler):
 	def get(self):
 		if not users.is_current_user_admin():
-			self.response.out.write('you\'re not and admin, you should probably head <a href="/">home...</a>')
+			self.response.out.write('you\'re not an admin, you should probably head <a href="/">home...</a>, or <a href="%s">login</a>' % users.CreateLoginURL(self.request.uri))
 		else:
 			self.generate('control.html')
+			
+class AboutController(BaseRequestHandler):
+	def get(self):
+		self.generate('about.html', {'commits':self._get_commits()})
+		
+	def _get_commits(self):
+		commits = urlfetch.fetch("http://github.com/api/v1/json/drew/bramble/commits/master")
+		commits_dict = simplejson.loads(str(commits.content))
+		return commits_dict
 
 def main():
   application = webapp.WSGIApplication([
@@ -137,7 +141,8 @@ def main():
 		('/ticket/create', CreateTicket),
 		('/ticket/(\d+)/changeset', TicketChangeSet),
 		('/ticket/(\d+)', ViewTicket),
-		('/control/', ControlDashboard)
+		('/control/', ControlDashboard),
+		('/about/', AboutController)
 	], debug=_DEBUG)
   wsgiref.handlers.CGIHandler().run(application)
 

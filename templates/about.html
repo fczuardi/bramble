@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="content">
+source code is released under a <a href="http://creativecommons.org/licenses/LGPL/2.1/">creative commons license</a>.
+
+<p><strong>recent bramble commits</strong></p>
+<p>
+{% for commit in commits.commits %}
+<a href="{{commit.url}}">{{commit.message}}</a> commited at {{commit.authored_date}}<br/>
+{% endfor %}
+</p>
+
+</div>
+
+{% endblock %}
