@@ -15,19 +15,20 @@
 
 <div id="ticket">
 	<div id="header">
-		<div id="ticket_id">#{{ticket.key.id}}</div>
+		<div id="ticket_id">#{{ticket.key.id}}</div></td>		
 		<h1>{{ ticket.summary }}</h1>
 		<div id="reported">
 			reported by <a href="/u/@{{ ticket.author_email }}">{{ ticket.author_email }}</a>,
 			{{ticket.created|date:"b wS"}}
 		</div>
-		<div id="status">
-			<b>status:</b> <strong style="background:yellow;padding:4px">{{ticket.status}}</strong>
-			{# this is a terrible hack for getting around django's lack of ability to use dictionaries #}
-			{% for label in labels reversed %}
-				<b>{{ label }}:</b><strong style="background:#e3e3e3;padding:4px">{{ label_value.pop }}</strong>
-			{% endfor %}
-		</div>
+		<table id="status">
+			<tr><td><strong>status</strong></td><td>{{ticket.status}}</td></tr>
+			<tr><td><strong>type</strong></td><td>{{ticket.type}}</td></tr>
+			<tr><td><strong>labels</strong></td><td>
+				{% for label in ticket.labels%}
+					{{label}},
+				{% endfor %}
+		</table>
 	</div>
 	<div id="ticket_description">
 		{{ ticket.description|markdown }}
