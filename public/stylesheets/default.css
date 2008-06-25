@@ -1,7 +1,7 @@
 label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
 a { color: blue; text-decoration: none; }
 
-body { margin:0;background:#e3e3e3;font-family: helvetica, arial; font-size: 12px; line-height: 175%; }
+body { margin:0;font-family: helvetica, arial; font-size: 12px; line-height: 175%; }
 
 #content {
 	padding: 25px;
