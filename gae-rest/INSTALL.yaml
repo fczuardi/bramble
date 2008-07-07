@@ -1,0 +1,19 @@
+# INSTALLATION
+# 
+# To enable the REST API on your Google App Engine Application, simply
+# copy the gae-rest folder containing the scripts to the root of your 
+# app, edit the config.py file and update your app.yaml file to include 
+# the proper /xn/ handler
+# 
+# The ending file should look like this:
+#
+application: yourappname
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /xn/.*
+  script: gae-rest/xn.py
+# your other handlers here
+# ...
